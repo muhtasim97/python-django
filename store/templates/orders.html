@@ -1,0 +1,35 @@
+{% extends 'header.html'%}
+{% block content %}
+{% load cart %}
+<div class="container">
+    <h2 class="display-5">Your Orders</h2>
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#Sl</th>
+      <th scope="col">Image</th>
+      <th scope="col">Product Name</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for order in orders%}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td><img src="{{order.product.image.url}}" class="" style="height: 80px;"></td>
+      <td>{{order.product.name}}</td>
+      <td>{{order.quantity}}</td>
+      {% if order.status%}
+       <td><small class="badge badge-success">completed</small></td>
+      {%else %}
+       <td><small class="badge badge-danger">pending</small></td>
+       {%endif%}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+{% endblock%}

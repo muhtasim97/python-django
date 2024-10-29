@@ -1,0 +1,35 @@
+{% extends 'header.html'%}
+{% block content %}
+<form action="/signup" method="POST">
+{% csrf_token%}
+<div class="container mx-auto col-lg-5 border p-4">
+    <div class="form-group">
+        <h3 class="h3 border p-2 text-dark text-center">Create Account</h3>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+        {{error}}
+        </div>
+         {% endif %}
+      <label for="fname"><strong>First Name</strong></label>
+      <input type="text" name="fname" value="{{firstname}}" id="" class="form-control" placeholder="">
+    </div>
+    <div class="form-group">
+        <label for="lname"><strong>Last Name</strong></label>
+        <input type="text" name="lname" value="{{lastname}}" id="" class="form-control" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="phone"><strong>Phone</strong></label>
+        <input type="text" name="phone" value="{{phone}}" id="" class="form-control" required placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="email"><strong>Email</strong></label>
+        <input type="email" name="email" value="{{email}}" id="" class="form-control" required placeholder="Example@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="pass"><strong>Password</strong></label>
+        <input type="password" name="password" id="" class="form-control" placeholder="">
+      </div>
+      <input class="btn btn-primary" type="submit" value="Submit">
+</div>
+</form>
+{% endblock%}

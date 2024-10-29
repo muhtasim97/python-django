@@ -1,0 +1,44 @@
+{% extends 'header.html'%}
+       {% block content %}
+       {% load cart %}
+        <div class="container">
+              <div class="row">
+                {% for p in products %}
+                  <div class="col mb-3 mx-auto" id={{p.id}}>
+                    <div class="card" style="width: 20rem;">
+                        <img class="card-img-top" src="{{p.image.url}}" alt="Card image cap" style="max-height: 400px;">
+                        <div class="card-body">
+                          <h5 class="card-title">{{p.name}}</h5>
+                          <p class="card-text">{{p.price|currency}}</p>
+                        </div>
+                        <div class="card-footer bg-light p-2">
+                          {% if p|is_in_cart:request.session.cart %} <!---filter----->
+                            <div class="row no-gutters">
+                            <form action="/#{{p.id}}"  method="POST" class="btn-block col-2">
+                            {% csrf_token %}
+                            <input hidden type="text" name="p_id" value={{p.id}}>
+                            <input hidden type="number" name="remove" value=-1>
+                            <input type="submit" value="-" class="btn btn-secondary btn-block">
+                            </form>
+                            <div class="col text-center bg-light">{{p|quantity:request.session.cart}} in cart</div>
+                            <form action="/#{{p.id}}"  method="POST" class="btn-block col-2">
+                            {% csrf_token %}
+                            <input hidden type="text" name="p_id" value={{p.id}}>
+                            <input type="submit" value="+" class="btn btn-secondary btn-block">
+                            </form>
+                            </div>
+                          {% else %}
+                          <form action="/#{{p.id}}" method="POST" class="btn-block">
+                          {% csrf_token %}
+                          <input hidden type="text" name="p_id" value={{p.id}}>
+                          <input type="submit" class="btn btn-light col" value="Add to card">
+                          </form>
+                          {% endif %}
+                    
+                      </div> 
+                  </div>
+                  </div>
+                 {% endfor %}      
+            </div>
+      </div>
+      {% endblock%}
