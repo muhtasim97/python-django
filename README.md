@@ -12,10 +12,6 @@
 
 >Screenshot of the website ![](e.png)
 
-> Here is the video  link  of this Ecommerce website that I uploaded in youtube - https://www.youtube.com/watch?v=iB3g9t6XsxQ&t=1s
-
->For know more about Django follow their documentation - https://docs.djangoproject.com/en/3.0/
-
 
 
 
